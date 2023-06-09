@@ -17,35 +17,73 @@ const slides = [
 	}
 ]
 
-const numberOfSlides = slides.length;
-const arrowLeft = document.getElementsByClassName ('arrow_left')
-const arrowRight = document.getElementsByClassName ('arrow_right')
-let position = 0;
 
+const arrowLeft = document.getElementById('arrow_left');
+const arrowRight = document.getElementById('arrow_right');
+const image = document.getElementById ('slide')
+const tagLine = document.getElementById ('tagLine')
+const src = image.getAttribute('src')
+const dot = document.getElementsByClassName('dot')
+let p = 0;
 
-if (slides [1]) {
+console.log(dot);
 
-}
+function nextSlide() {
+	p++;
+	p = p%slides.length
+	updateSlide(p);
 
+	for (i = 0; i < dot.length; i++){
 
-function nextSlide () {
+	if(dot[i].getAttribute('data-clic')-1 === p){
+		dot[i].classList.add('dot_selected');
+	}else {
+		dot[i].classList.remove('dot_selected');
+	}
 
-if (position === numberOfSlides - 1) {
-	position = 0;
-} else {
-	position ++;
-}
-}
-console.log (nextSlide)
-
-function previousSlide () {
-	if (position === 0) {
-		position = numberOfSlides -1;
-	} else {
-		position --;
 	}
 }
 
-arrowRight.addEventListener('click', nextSlide)
+function previousSlide() {
+	p--;
+	p = p%slides.length
+
+	if (p < 0){
+		p = slides.length-1
+	}
+	updateSlide(p);
+
+	for (i = 0; i < dot.length; i++){
+		
+		if(dot[i].getAttribute('data-clic')-1 === p){
+			dot[i].classList.add('dot_selected');
+		}else {
+			dot[i].classList.remove('dot_selected');
+		}
+	
+		}
+}
+
+function updateSlide(index) {
+	const imageName = slides[index].image
+	const tagLineName = slides[index].tagLine
+	tagLine.innerHTML = tagLineName
+	
+
+	const lastSlashIndex = src.lastIndexOf("/");
+	const relativePathWithoutImgName = src.slice(0, lastSlashIndex + 1);
+	const relativePathImg = relativePathWithoutImgName.concat(imageName);
+	image.setAttribute('src', relativePathImg)
+	console.log(imageName);
+}
+
+
 arrowLeft.addEventListener('click', previousSlide)
+
+arrowRight.addEventListener('click', nextSlide)
+
+
+
+
+
 
