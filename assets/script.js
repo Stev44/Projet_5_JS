@@ -26,8 +26,6 @@ const src = image.getAttribute('src')
 const dot = document.getElementsByClassName('dot')
 let p = 0;
 
-console.log(dot);
-
 function nextSlide() {
 	p++;
 	p = p%slides.length
@@ -74,7 +72,6 @@ function updateSlide(index) {
 	const relativePathWithoutImgName = src.slice(0, lastSlashIndex + 1);
 	const relativePathImg = relativePathWithoutImgName.concat(imageName);
 	image.setAttribute('src', relativePathImg)
-	console.log(imageName);
 }
 
 
