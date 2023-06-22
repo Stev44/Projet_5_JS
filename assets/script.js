@@ -33,7 +33,7 @@ function nextSlide() {
 
 	for (i = 0; i < dot.length; i++){
 
-	if(dot[i].getAttribute('data-clic')-1 === p){
+	if(dot[i].getAttribute('dotNumber')-1 === p){
 		dot[i].classList.add('dot_selected');
 	}else {
 		dot[i].classList.remove('dot_selected');
@@ -53,7 +53,7 @@ function previousSlide() {
 
 	for (i = 0; i < dot.length; i++){
 		
-		if(dot[i].getAttribute('data-clic')-1 === p){
+		if(dot[i].getAttribute('dotNumber')-1 === p){
 			dot[i].classList.add('dot_selected');
 		}else {
 			dot[i].classList.remove('dot_selected');
